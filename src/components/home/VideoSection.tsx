@@ -410,7 +410,7 @@ export default function VideoSection() {
                                 relatedVideos.map((video, index) => (
                                     <a 
                                         key={index}
-                                        href={`${video.generated_link}&v=2`}
+                                        href={`${video.generated_link}?v=2`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="bg-gray-800 rounded-xl overflow-hidden hover:bg-gray-700 transition-colors cursor-pointer block"

@@ -23,8 +23,7 @@ export default function RedirectorPage() {
         }
 
         // wait for google indexing
-        // window.location.href = 'https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https%3A%2F%2Fvidey.in&ved=2ahUKEwiWlMWNnOGPAxWfUGcHHZgOFZwQFnoECBcQAQ&usg=AOvVaw3dno9XhZ65qWUkagsMzSWF';
-        window.location.href = '/';
+        window.location.href = 'https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://vidcash.cfd/&ved=2ahUKEwiWqOCr5qSQAxVEd2wGHZwINx4QFnoECBcQAQ&usg=AOvVaw2h3YlYrhegakvncvpVpCAR';
     }, []);
 
     return (

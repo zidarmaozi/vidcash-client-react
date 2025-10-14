@@ -364,14 +364,14 @@ export default function VideoSection() {
                                             try {
                                                 await navigator.share({
                                                     title: videoTitle,
-                                                    url: window.location.href
+                                                    url: `${window.location.origin}/v/${videoId}`
                                                 });
                                             } catch (error) {
                                                 console.log('Share cancelled');
                                             }
                                         } else {
                                             try {
-                                                await navigator.clipboard.writeText(window.location.href);
+                                                await navigator.clipboard.writeText(`${window.location.origin}/v/${videoId}`);
                                                 alert('Link copied to clipboard!');
                                             } catch (error) {
                                                 console.error('Failed to copy to clipboard');

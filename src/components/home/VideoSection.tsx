@@ -13,7 +13,6 @@ export default function VideoSection() {
     const [isPlaying, setIsPlaying] = useState(false);
     const [hoverTime, setHoverTime] = useState(0);
     const [showPreview, setShowPreview] = useState(false);
-    const [volume, setVolume] = useState(1);
     const [isMuted, setIsMuted] = useState(false);
     
     // Refs

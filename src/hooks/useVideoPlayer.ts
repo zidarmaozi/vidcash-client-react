@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 
 interface VideoPlayerState {
     currentTime: number;
@@ -23,6 +23,7 @@ interface VideoPlayerActions {
     handleMuteToggle: () => void;
     handleFullscreenToggle: () => void;
     formatTime: (time: number) => string;
+    videoRef: React.RefObject<HTMLVideoElement | null>;
 }
 
 export const useVideoPlayer = (videoId: string, onViewRecorded?: () => void): VideoPlayerState & VideoPlayerActions => {

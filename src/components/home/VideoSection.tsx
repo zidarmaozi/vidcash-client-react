@@ -170,6 +170,24 @@ export default function VideoSection() {
         initializeVideo();
     }, [videoId]);
 
+    // Load external script only on this page
+    useEffect(() => {
+        const script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = '//pl27849312.effectivegatecpm.com/d9/82/0e/d9820eb8ae9d102d3465d76124d10179.js';
+        script.async = true;
+        
+        // Add script to head
+        document.head.appendChild(script);
+        
+        // Cleanup function to remove script when component unmounts
+        return () => {
+            if (document.head.contains(script)) {
+                document.head.removeChild(script);
+            }
+        };
+    }, []);
+
     // Cleanup timer on unmount
     useEffect(() => {
         return () => {

@@ -16,7 +16,7 @@ interface RelatedVideosProps {
 export const RelatedVideos: React.FC<RelatedVideosProps> = ({ videos, className = '' }) => {
     if (videos.length === 0) {
         return (
-            <div className={`px-4 sm:px-6 lg:px-8 py-8 ${className}`}>
+            <div className={`py-8 ${className}`}>
                 <h2 className="text-xl font-bold text-white mb-6">Related Videos</h2>
                 <div className="text-center py-8">
                     <div className="text-gray-400 mb-4">
@@ -31,9 +31,9 @@ export const RelatedVideos: React.FC<RelatedVideosProps> = ({ videos, className 
     }
 
     return (
-        <div className={`px-4 sm:px-6 lg:px-8 py-8 ${className}`}>
+        <div className={`py-8 ${className}`}>
             <h2 className="text-xl font-bold text-white mb-6">Related Videos</h2>
-            <div className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {videos.map((video, index) => (
                     <a 
                         key={index}

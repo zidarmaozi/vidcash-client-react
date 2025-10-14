@@ -59,21 +59,14 @@ export const RelatedVideos: React.FC<RelatedVideosProps> = ({ videos, className 
                                     </div>
                                 </div>
                             )}
-                            <div className="absolute bottom-2 right-2 bg-black/80 rounded px-2 py-1">
-                                <span className="text-white text-xs">{video.duration || '0:00'}</span>
-                            </div>
                         </div>
                         <div className="p-4">
                             <h3 className="text-white font-semibold mb-2 line-clamp-2">{video.title}</h3>
-                            <div className="flex items-center space-x-2 mb-2">
+                            <div className="flex items-center space-x-2">
                                 <div className="w-6 h-6 bg-gradient-to-r from-pink-500 to-violet-500 rounded-full flex items-center justify-center">
                                     <span className="text-white font-bold text-xs">VC</span>
                                 </div>
                                 <span className="text-gray-400 text-sm">VidCash User</span>
-                            </div>
-                            <div className="flex items-center justify-between text-gray-400 text-sm">
-                                <span>{video.views || 0} views</span>
-                                <span>Recently uploaded</span>
                             </div>
                         </div>
                     </a>

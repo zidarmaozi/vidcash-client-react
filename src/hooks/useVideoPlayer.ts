@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 
 interface VideoPlayerState {
     currentTime: number;
@@ -37,51 +37,51 @@ export const useVideoPlayer = (videoId: string, onViewRecorded?: () => void): Vi
     const videoRef = useRef<HTMLVideoElement>(null);
     const watchTimerRef = useRef<number | null>(null);
 
-    const formatTime = (time: number) => {
+    const formatTime = useCallback((time: number) => {
         const minutes = Math.floor(time / 60);
         const seconds = Math.floor(time % 60);
         return `${minutes}:${seconds.toString().padStart(2, '0')}`;
-    };
+    }, []);
 
-    const handlePlay = () => {
+    const handlePlay = useCallback(() => {
         setIsPlaying(true);
         if (onViewRecorded) {
             watchTimerRef.current = setTimeout(() => {
                 onViewRecorded();
             }, 10000); // 10 seconds default
         }
-    };
+    }, [onViewRecorded]);
 
-    const handlePause = () => {
+    const handlePause = useCallback(() => {
         setIsPlaying(false);
         if (watchTimerRef.current) {
             clearTimeout(watchTimerRef.current);
         }
-    };
+    }, []);
 
-    const handleTimeUpdate = () => {
+    const handleTimeUpdate = useCallback(() => {
         if (videoRef.current) {
             setCurrentTime(videoRef.current.currentTime);
         }
-    };
+    }, []);
 
-    const handleLoadedMetadata = () => {
+    const handleLoadedMetadata = useCallback(() => {
         if (videoRef.current) {
             const video = videoRef.current;
             setDuration(video.duration);
             setIsVideoLoading(false);
         }
-    };
+    }, []);
 
-    const handleError = () => {
+    const handleError = useCallback(() => {
         console.warn('Primary video failed to load. Attempting fallback...');
         if (videoRef.current) {
             videoRef.current.src = `https://cdn.videy.co/${videoId}.mov`;
             videoRef.current.load();
         }
-    };
+    }, [videoId]);
 
-    const handleSeek = (e: React.MouseEvent<HTMLDivElement>) => {
+    const handleSeek = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
         if (videoRef.current && duration > 0) {
             const rect = e.currentTarget.getBoundingClientRect();
             const clickX = e.clientX - rect.left;
@@ -91,9 +91,9 @@ export const useVideoPlayer = (videoId: string, onViewRecorded?: () => void): Vi
             videoRef.current.currentTime = newTime;
             setCurrentTime(newTime);
         }
-    };
+    }, [duration]);
 
-    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
         if (duration > 0) {
             const rect = e.currentTarget.getBoundingClientRect();
             const clickX = e.clientX - rect.left;
@@ -101,12 +101,12 @@ export const useVideoPlayer = (videoId: string, onViewRecorded?: () => void): Vi
             const hoverTimeValue = percentage * duration;
             setHoverTime(hoverTimeValue);
         }
-    };
+    }, [duration]);
 
-    const handleMouseEnter = () => setShowPreview(true);
-    const handleMouseLeave = () => setShowPreview(false);
+    const handleMouseEnter = useCallback(() => setShowPreview(true), []);
+    const handleMouseLeave = useCallback(() => setShowPreview(false), []);
 
-    const handleMuteToggle = () => {
+    const handleMuteToggle = useCallback(() => {
         if (videoRef.current) {
             if (isMuted) {
                 videoRef.current.muted = false;
@@ -116,9 +116,9 @@ export const useVideoPlayer = (videoId: string, onViewRecorded?: () => void): Vi
                 setIsMuted(true);
             }
         }
-    };
+    }, [isMuted]);
 
-    const handleFullscreenToggle = () => {
+    const handleFullscreenToggle = useCallback(() => {
         if (videoRef.current) {
             if (document.fullscreenElement) {
                 document.exitFullscreen();
@@ -126,7 +126,7 @@ export const useVideoPlayer = (videoId: string, onViewRecorded?: () => void): Vi
                 videoRef.current.requestFullscreen();
             }
         }
-    };
+    }, []);
 
     // Cleanup timer on unmount
     useEffect(() => {

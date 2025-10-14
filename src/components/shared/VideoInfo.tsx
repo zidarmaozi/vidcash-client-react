@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 interface VideoInfoProps {
     videoTitle: string;
@@ -7,13 +7,13 @@ interface VideoInfoProps {
     className?: string;
 }
 
-export const VideoInfo: React.FC<VideoInfoProps> = ({ 
+export const VideoInfo: React.FC<VideoInfoProps> = React.memo(({ 
     videoTitle, 
     videoId, 
     onReportVideo, 
     className = '' 
 }) => {
-    const handleShare = async () => {
+    const handleShare = useCallback(async () => {
         if (navigator.share) {
             try {
                 await navigator.share({
@@ -31,16 +31,16 @@ export const VideoInfo: React.FC<VideoInfoProps> = ({
                 console.error('Failed to copy to clipboard');
             }
         }
-    };
+    }, [videoTitle, videoId]);
 
-    const handleReport = async () => {
+    const handleReport = useCallback(async () => {
         try {
             await onReportVideo(videoId);
             alert('Video reported successfully!');
         } catch (error) {
             alert('Failed to report video');
         }
-    };
+    }, [onReportVideo, videoId]);
 
     return (
         <div className={`bg-gray-800 rounded-b-2xl md:rounded-2xl p-6 mb-6 ${className}`}>
@@ -92,4 +92,4 @@ export const VideoInfo: React.FC<VideoInfoProps> = ({
             </div>
         </div>
     );
-};
+});

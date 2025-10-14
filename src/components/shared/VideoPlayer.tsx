@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback, useMemo } from 'react';
 import { useVideoPlayer } from '../../hooks/useVideoPlayer';
 
 interface VideoPlayerProps {
@@ -7,7 +7,7 @@ interface VideoPlayerProps {
     className?: string;
 }
 
-export const VideoPlayer: React.FC<VideoPlayerProps> = ({ 
+export const VideoPlayer: React.FC<VideoPlayerProps> = React.memo(({ 
     videoId, 
     onViewRecorded, 
     className = '' 
@@ -42,7 +42,20 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
         }
     }, [videoId, videoRef]);
 
-    const progressPercentage = duration > 0 ? (currentTime / duration) * 100 : 0;
+    const progressPercentage = useMemo(() => 
+        duration > 0 ? (currentTime / duration) * 100 : 0, 
+        [currentTime, duration]
+    );
+
+    const handlePlayPause = useCallback(() => {
+        if (videoRef.current) {
+            if (isPlaying) {
+                videoRef.current.pause();
+            } else {
+                videoRef.current.play();
+            }
+        }
+    }, [isPlaying]);
 
     return (
         <div className={`w-full max-w-7xl mx-auto lg:px-8 ${className}`}>
@@ -78,15 +91,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
                         <div className="flex items-center justify-between mb-4">
                             <div className="flex items-center space-x-4">
                                 <button 
-                                    onClick={() => {
-                                        if (videoRef.current) {
-                                            if (isPlaying) {
-                                                videoRef.current.pause();
-                                            } else {
-                                                videoRef.current.play();
-                                            }
-                                        }
-                                    }}
+                                    onClick={handlePlayPause}
                                     className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
                                 >
                                     {isPlaying ? (
@@ -161,4 +166,4 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
             </div>
         </div>
     );
-};
+});

@@ -4,7 +4,7 @@ interface HeaderProps {
     className?: string;
 }
 
-export const Header: React.FC<HeaderProps> = ({ className = '' }) => {
+export const Header: React.FC<HeaderProps> = React.memo(({ className = '' }) => {
     return (
         <header className={`bg-black/90 backdrop-blur-lg border-b border-gray-800 sticky top-0 z-50 ${className}`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -32,4 +32,4 @@ export const Header: React.FC<HeaderProps> = ({ className = '' }) => {
             </div>
         </header>
     );
-};
+});

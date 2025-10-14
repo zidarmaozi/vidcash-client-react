@@ -4,7 +4,7 @@ interface FooterProps {
     className?: string;
 }
 
-export const Footer: React.FC<FooterProps> = ({ className = '' }) => {
+export const Footer: React.FC<FooterProps> = React.memo(({ className = '' }) => {
     return (
         <footer className={`bg-black border-t border-gray-800 mt-16 ${className}`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -70,4 +70,4 @@ export const Footer: React.FC<FooterProps> = ({ className = '' }) => {
             </div>
         </footer>
     );
-};
+});

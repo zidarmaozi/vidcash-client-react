@@ -13,7 +13,7 @@ interface RelatedVideosProps {
     className?: string;
 }
 
-export const RelatedVideos: React.FC<RelatedVideosProps> = ({ videos, className = '' }) => {
+export const RelatedVideos: React.FC<RelatedVideosProps> = React.memo(({ videos, className = '' }) => {
     if (videos.length === 0) {
         return (
             <div className={`py-8 ${className}`}>
@@ -36,7 +36,7 @@ export const RelatedVideos: React.FC<RelatedVideosProps> = ({ videos, className 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {videos.map((video, index) => (
                     <a 
-                        key={index}
+                        key={`${video.generated_link}-${index}`}
                         href={`${video.generated_link}?v=2`}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -74,4 +74,4 @@ export const RelatedVideos: React.FC<RelatedVideosProps> = ({ videos, className 
             </div>
         </div>
     );
-};
+});

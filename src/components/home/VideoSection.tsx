@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import { useVideoId } from '../../hooks/useVideoId';
 import { useVideoData } from '../../hooks/useVideoData';
 import { Header, Footer, VideoPlayer, VideoInfo, RelatedVideos } from '../shared';
@@ -25,12 +25,12 @@ export default function VideoSection() {
         };
     }, []);
 
-    const handleReportVideo = async (videoCode: string) => {
+    const handleReportVideo = useCallback(async (videoCode: string) => {
         const result = await reportVideo(videoCode);
         if (!result.success) {
             throw new Error('Failed to report video');
         }
-    };
+    }, [reportVideo]);
 
     return (
         <div className="min-h-screen bg-gray-900">

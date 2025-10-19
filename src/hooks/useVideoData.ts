@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 interface VideoSettings {
     video_title?: string;
-    is_available?: boolean;
+    is_active?: boolean;
     watch_time_seconds?: number;
 }
 
@@ -240,7 +240,7 @@ export const useVideoData = (videoId: string) => {
         const initializeVideo = async () => {
             const settings = await getSettings();
             
-            if (settings && settings.is_available === false) {
+            if (settings && settings.is_active === false) {
                 window.location.replace('/removed');
                 return;
             }

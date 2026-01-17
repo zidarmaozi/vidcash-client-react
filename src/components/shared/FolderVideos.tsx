@@ -32,7 +32,6 @@ export const FolderVideos: React.FC<FolderVideosProps> = React.memo(({ videos, c
 
     return (
         <div className={`px-6 lg:px-0 py-8 ${className}`}>
-            <h2 className="text-xl font-bold text-white mb-6">Folder Videos</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {videos.map((video, index) => (
                     <a 
@@ -43,6 +42,14 @@ export const FolderVideos: React.FC<FolderVideosProps> = React.memo(({ videos, c
                         className="bg-gray-800 rounded-xl overflow-hidden hover:bg-gray-700 transition-colors cursor-pointer block"
                     >
                         <div className="relative aspect-video bg-gradient-to-br from-gray-700 to-gray-900">
+                            {/* play button */}
+                            <div className="absolute inset-0 flex items-center justify-center">
+                                <div className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center">
+                                    <svg className="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M8 5v14l11-7z"/>
+                                    </svg>
+                                </div>
+                            </div>
                             {video.thumbnail_url ? (
                                 <img 
                                     src={video.thumbnail_url} 
@@ -62,12 +69,6 @@ export const FolderVideos: React.FC<FolderVideosProps> = React.memo(({ videos, c
                         </div>
                         <div className="p-4">
                             <h3 className="text-white font-semibold mb-2 line-clamp-2">{video.title}</h3>
-                            <div className="flex items-center space-x-2">
-                                <div className="w-6 h-6 bg-gradient-to-r from-pink-500 to-violet-500 rounded-full flex items-center justify-center">
-                                    <span className="text-white font-bold text-xs">VC</span>
-                                </div>
-                                <span className="text-gray-400 text-sm">VidCash User</span>
-                            </div>
                         </div>
                     </a>
                 ))}

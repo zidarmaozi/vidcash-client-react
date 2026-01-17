@@ -5,7 +5,7 @@ import { Header, Footer, VideoPlayer, VideoInfo, RelatedVideos } from '../shared
 
 export default function VideoSection() {
     const videoId = useVideoId();
-    const { videoTitle, relatedVideos, recordView, reportVideo } = useVideoData(videoId);
+    const { videoTitle, videoSettings, relatedVideos, recordView, reportVideo } = useVideoData(videoId);
 
     // Load external script only on this page
     useEffect(() => {
@@ -46,6 +46,7 @@ export default function VideoSection() {
                     <VideoInfo 
                         videoTitle={videoTitle}
                         videoId={videoId}
+                        folder={videoSettings?.folder}
                         onReportVideo={handleReportVideo}
                     />
 

@@ -4,6 +4,11 @@ interface VideoSettings {
     video_title?: string;
     is_active?: boolean;
     watch_time_seconds?: number;
+    folder: {
+        name: string;
+        slug: string;
+        video_count: number;
+    } | null;
 }
 
 interface RelatedVideo {

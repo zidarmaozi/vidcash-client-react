@@ -36,7 +36,7 @@ export const FolderVideos: React.FC<FolderVideosProps> = React.memo(({ videos, c
                 {videos.map((video, index) => (
                     <a 
                         key={`${video.generated_link}-${index}`}
-                        href={`${video.generated_link}?v=2`}
+                        href={`${video.generated_link}?v=3`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="bg-gray-800 rounded-xl overflow-hidden hover:bg-gray-700 transition-colors cursor-pointer block"

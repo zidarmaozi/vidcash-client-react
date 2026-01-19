@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import videoTransfer from '../const/video-transfer';
 
 interface VideoSettings {
     video_title?: string;
@@ -204,7 +205,7 @@ export const useVideoData = (videoId: string) => {
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
-                    'X-Via': localStorage.getItem('videoVia') || '1',
+                    'X-Via': localStorage.getItem(videoTransfer.videoViaKey) || '1',
                 },
                 body: JSON.stringify({ video_code: videoId })
             });

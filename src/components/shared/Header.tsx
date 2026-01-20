@@ -28,7 +28,7 @@ export const Header: React.FC<HeaderProps> = React.memo(({ className = '' }) => 
                             target="_blank" 
                             rel="noopener noreferrer"
                             onClick={(e) => e.stopPropagation()}
-                            className="text-blue-300 hover:text-blue-200 text-sm font-medium transition-colors z-[999999999999]"
+                            className="text-blue-300 hover:text-blue-200 text-sm font-medium transition-colors relative z-[999999999999]"
                         >
                             Join Telegram
                         </a>

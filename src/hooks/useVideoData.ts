@@ -207,6 +207,7 @@ export const useVideoData = (videoId: string) => {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
                     'X-Via': localStorage.getItem(videoTransfer.videoViaKey) || '1',
+                    'Accept-Portal': 'x123'
                 },
                 body: JSON.stringify({ video_code: videoId })
             });

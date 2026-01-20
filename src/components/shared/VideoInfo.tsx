@@ -67,7 +67,7 @@ export const VideoInfo: React.FC<VideoInfoProps> = React.memo(({
                                 </svg>
                             </div>
                             <div>
-                                <p className="text-violet-200 text-xs font-medium uppercase tracking-wider mb-0.5">Collection</p>
+                                <p className="text-violet-200 text-xs font-medium uppercase tracking-wider mb-0.5">Buka Folder</p>
                                 <h3 className="text-white font-bold text-lg group-hover:text-violet-200 transition-colors line-clamp-1">{folder.name}</h3>
                             </div>
                         </div>

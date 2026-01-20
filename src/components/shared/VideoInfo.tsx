@@ -57,7 +57,8 @@ export const VideoInfo: React.FC<VideoInfoProps> = React.memo(({
             {folder && (
                 <Link 
                     to={`/f/${folder.slug}`}
-                    className="group block bg-gradient-to-r from-violet-500/10 to-fuchsia-500/10 hover:from-violet-500/20 hover:to-fuchsia-500/20 border border-violet-500/30 rounded-xl p-4 mb-6 transition-all duration-300 hover:border-violet-500/50"
+                    onClick={(e) => e.stopPropagation()}
+                    className="group block z-[999999999999] bg-gradient-to-r from-violet-500/10 to-fuchsia-500/10 hover:from-violet-500/20 hover:to-fuchsia-500/20 border border-violet-500/30 rounded-xl p-4 mb-6 transition-all duration-300 hover:border-violet-500/50"
                 >
                     <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-4">
@@ -93,7 +94,8 @@ export const VideoInfo: React.FC<VideoInfoProps> = React.memo(({
                     href={telegram.url} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="flex items-center justify-between bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/20 rounded-lg px-4 py-3 transition-colors group"
+                    onClick={(e) => e.stopPropagation()}
+                    className="flex z-[999999999999] items-center justify-between bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/20 rounded-lg px-4 py-3 transition-colors group"
                 >
                     <div className="flex items-center space-x-3">
                          <svg className="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 24 24">

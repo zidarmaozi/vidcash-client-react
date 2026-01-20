@@ -69,12 +69,14 @@ export const VideoInfo: React.FC<VideoInfoProps> = React.memo(({
                             <div>
                                 <p className="text-violet-200 text-xs font-medium uppercase tracking-wider mb-0.5">Buka Folder</p>
                                 <h3 className="text-white font-bold text-lg group-hover:text-violet-200 transition-colors line-clamp-1">{folder.name}</h3>
+                                <div className="flex items-center mt-1">
+                                    <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-violet-500/20 text-violet-200 border border-violet-500/20">
+                                        {folder.video_count}+ Videos
+                                    </span>
+                                </div>
                             </div>
                         </div>
                         <div className="flex items-center space-x-3">
-                            <span className="hidden sm:inline-flex items-center px-3 py-1 rounded-full bg-violet-500/20 text-violet-200 text-xs font-medium border border-violet-500/20">
-                                {folder.video_count}+ Videos
-                            </span>
                             <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-violet-500 group-hover:text-white transition-all duration-300">
                                 <svg className="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

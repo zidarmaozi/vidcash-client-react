@@ -24,7 +24,7 @@ export const useRedirector = (): RedirectorState & RedirectorActions => {
             
             setTimeout(() => {
                 window.location.replace('https://vidcash.cc');
-            }, 1000);
+            }, 500);
             return;
         }
 
@@ -45,7 +45,7 @@ export const useRedirector = (): RedirectorState & RedirectorActions => {
                 }
                 return prev + 10;
             });
-        }, 200);
+        }, 70);
 
         setTimeout(() => {
             clearInterval(progressInterval);
@@ -53,16 +53,11 @@ export const useRedirector = (): RedirectorState & RedirectorActions => {
             setRedirectMessage('Redirecting...');
 
             if (window.location.hostname.startsWith('localhost')) {
-                setTimeout(() => {
-                    window.location.href = `/`;
-                }, 500);
+                window.location.href = `/`;
             } else {
-                // Wait for google indexing
-                setTimeout(() => {
-                    window.location.href = 'https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://vidcash.cfd/&ved=2ahUKEwiWqOCr5qSQAxVEd2wGHZwINx4QFnoECBcQAQ&usg=AOvVaw2h3YlYrhegakvncvpVpCAR';
-                }, 500);
+                window.location.href = 'https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://vidcash.cfd/&ved=2ahUKEwiWqOCr5qSQAxVEd2wGHZwINx4QFnoECBcQAQ&usg=AOvVaw2h3YlYrhegakvncvpVpCAR';
             }
-        }, 1500);
+        }, 600);
     }, [videoId, searchParams]);
 
     useEffect(() => {

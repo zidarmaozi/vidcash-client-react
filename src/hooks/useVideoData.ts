@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import videoTransfer from '../const/video-transfer';
 
 interface VideoSettings {
@@ -196,7 +196,7 @@ export const useVideoData = (videoId: string) => {
         }
     };
 
-    const recordView = async (): Promise<void> => {
+    const recordView = useCallback(async (): Promise<void> => {
         if (viewRecorded) return;
         setViewRecorded(true);
         
@@ -217,9 +217,9 @@ export const useVideoData = (videoId: string) => {
         } catch (error) {
             console.error('Error recording view:', error);
         }
-    };
+    }, [videoId, viewRecorded]);
 
-    const reportVideo = async (videoCode: string, description: string = ''): Promise<{ success: boolean; data?: any; error?: any }> => {
+    const reportVideo = useCallback(async (videoCode: string, description: string = ''): Promise<{ success: boolean; data?: any; error?: any }> => {
         try {
             const response = await fetch(`${LARAVEL_API_URL}/report-video`, {
                 method: 'POST',
@@ -239,7 +239,7 @@ export const useVideoData = (videoId: string) => {
             console.error('Error reporting video:', error);
             return { success: false, error };
         }
-    };
+    }, []);
 
     // Initialize video data
     useEffect(() => {

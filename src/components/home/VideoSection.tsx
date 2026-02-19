@@ -37,6 +37,7 @@ export default function VideoSection() {
             <Header />
             
             <VideoPlayer 
+                key={videoId}
                 videoId={videoId} 
                 onViewRecorded={recordView}
             />

@@ -6,7 +6,8 @@ interface Video {
     id: number;
     video_code: string;
     title: string;
-    thumbnail_path: string;
+    thumbnail_path?: string;
+    thumbnail_url?: string;
 }
 
 export default function VidShortPage() {
@@ -298,7 +299,7 @@ export default function VidShortPage() {
                                             }}
                                         >
                                             <img 
-                                                src={`https://cdn.videy.co/${v.video_code}.jpg`} 
+                                                src={v.thumbnail_url || v.thumbnail_path || `https://cdn2.videy.co/${v.video_code}.jpg`} 
                                                 alt={v.title} 
                                                 className="absolute w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 will-change-transform" 
                                                 onError={(e) => { e.currentTarget.setAttribute('src', 'https://via.placeholder.com/300x533?text=Video'); }} 

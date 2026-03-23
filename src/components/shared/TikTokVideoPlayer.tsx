@@ -106,8 +106,8 @@ export default function TikTokVideoPlayer({ videoCode, isActive, shouldLoad }: T
             >
                 {shouldLoad && (
                     <>
-                        <source src={`https://cdn.videy.co/${videoCode}.mp4`} type="video/mp4" />
-                        <source src={`https://cdn.videy.co/${videoCode}.mov`} type="video/quicktime" />
+                        <source src={`https://cdn2.videy.co/${videoCode}.mp4`} type="video/mp4" />
+                        <source src={`https://cdn2.videy.co/${videoCode}.mov`} type="video/quicktime" />
                     </>
                 )}
             </video>

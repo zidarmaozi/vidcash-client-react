@@ -299,9 +299,9 @@ export default function VidShortPage() {
                                             }}
                                         >
                                             <img 
-                                                src={v.thumbnail_url || v.thumbnail_path || `https://cdn2.videy.co/${v.video_code}.jpg`} 
+                                                src={v.thumbnail_url || v.thumbnail_path || 'https://via.placeholder.com/300x533?text=No+Thumbnail'} 
                                                 alt={v.title} 
-                                                className="absolute w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 will-change-transform" 
+                                                className="absolute w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 will-change-transform bg-gray-800" 
                                                 onError={(e) => { e.currentTarget.setAttribute('src', 'https://via.placeholder.com/300x533?text=Video'); }} 
                                             />
                                             <div className="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black via-black/70 to-transparent">

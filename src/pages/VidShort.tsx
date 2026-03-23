@@ -142,6 +142,52 @@ export default function VidShortPage() {
         });
     }, [displayedVideos]);
 
+    // Delayed Ad Injection: Run global popunders only after 5 scrolls to limit annoyance
+    useEffect(() => {
+        if (activeIndex === 5) {
+            const adInjected = document.getElementById('vidshort-delayed-ads-injected');
+            if (!adInjected) {
+                const marker = document.createElement('div');
+                marker.id = 'vidshort-delayed-ads-injected';
+                document.head.appendChild(marker);
+                
+                const scriptEl = document.getElementById('global-ad-script-data');
+                if (scriptEl) {
+                    const match = /atob\('([^']+)'\)/.exec(scriptEl.innerHTML);
+                    if (match && match[1]) {
+                        try {
+                            const decoded = atob(match[1]);
+                            const dummy = document.createElement('div');
+                            dummy.innerHTML = decoded;
+                            
+                            const scripts = dummy.getElementsByTagName('script');
+                            const fragment = document.createDocumentFragment();
+                            
+                            // Iterate over parsed scripts and recreate them to force execution
+                            Array.from(scripts).forEach(oldScript => {
+                                const newScript = document.createElement('script');
+                                Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
+                                newScript.text = oldScript.text || oldScript.innerHTML;
+                                fragment.appendChild(newScript);
+                            });
+                            
+                            // Append any non-script nodes (like HTML comments)
+                            Array.from(dummy.children).forEach(child => {
+                                if (child.tagName.toLowerCase() !== 'script') {
+                                    fragment.appendChild(child.cloneNode(true));
+                                }
+                            });
+                            
+                            document.body.appendChild(fragment);
+                        } catch (err) {
+                            console.error('Failed to inject delayed ad scripts', err);
+                        }
+                    }
+                }
+            }
+        }
+    }, [activeIndex]);
+
     useEffect(() => {
         const options = {
             root: containerRef.current,

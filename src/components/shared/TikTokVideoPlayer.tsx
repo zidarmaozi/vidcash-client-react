@@ -75,8 +75,8 @@ export default function TikTokVideoPlayer({ videoCode, isActive, shouldLoad }: T
         <div className="relative w-full h-full bg-black flex items-center justify-center select-none">
             <video
                 ref={videoRef}
-                className={`absolute inset-0 m-auto bg-black transition-all duration-300 origin-center object-contain ${
-                    isRotated ? 'w-[100vh] h-[100vw] rotate-90' : 'w-full h-full rotate-0'
+                className={`absolute inset-0 m-auto bg-black transition-all duration-300 origin-center ${
+                    isRotated ? 'w-[100vh] h-[100vw] rotate-90 object-cover' : 'w-full h-full rotate-0 object-contain'
                 }`}
                 loop
                 playsInline
